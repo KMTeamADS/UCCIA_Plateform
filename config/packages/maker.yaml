@@ -1,0 +1,11 @@
+when@dev:
+    maker:
+        root_namespace: 'ADS\UCCIA'
+        generate_final_classes: true
+        generate_final_entities: false
+
+#when@dev: &maker_dev
+#    maker:
+#        root_namespace: ADS\UCCIA
+#
+#when@test: *maker_dev
