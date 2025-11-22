@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ADS\UCCIA\Controller\Admin;
 
 use ADS\UCCIA\Entity\Event;
+use ADS\UCCIA\Entity\FrequentlyAskedQuestion;
 use ADS\UCCIA\Entity\Page;
 use ADS\UCCIA\Entity\Post;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
@@ -57,10 +58,11 @@ final class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
 
-        yield MenuItem::section('Contenu');
+        yield MenuItem::section('Gestion de contenu');
         yield MenuItem::linkToCrud('Pages', 'fa fa-file-text', Page::class);
         yield MenuItem::linkToCrud('Articles', 'fas fa-newspaper', Post::class);
         yield MenuItem::linkToCrud('Événements', 'fa fa-calendar', Event::class);
+        yield MenuItem::linkToCrud('FAQ', 'fa fa-question', FrequentlyAskedQuestion::class);
     }
 
     public function configureUserMenu(UserInterface $user): UserMenu
