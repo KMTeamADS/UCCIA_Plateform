@@ -1,18 +1,22 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace ADS\UCCIA\Controller\Admin;
 
 use ADS\UCCIA\EasyAdmin\Field\TranslationsField;
 use ADS\UCCIA\EasyAdmin\Filter\TranslatableTextFilter;
-use ADS\UCCIA\Entity\Post;
+use ADS\UCCIA\Entity\Enums\PageType;
+use ADS\UCCIA\Entity\Page;
+use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -20,21 +24,21 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-final class PostCrudController extends AbstractCrudController
+class PageCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Post::class;
+        return Page::class;
     }
 
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Article')
-            ->setEntityLabelInPlural('Articles')
+            ->setEntityLabelInSingular('Page')
+            ->setEntityLabelInPlural('Pages')
             ->setDefaultSort(['createdAt' => 'DESC'])
-            ->setPageTitle(Crud::PAGE_NEW, 'Ajouter un nouvel article')
-            ->setPageTitle(Crud::PAGE_EDIT, 'Modification de l\'article <small>(#%entity_short_id%)</small>');
+            ->setPageTitle(Crud::PAGE_NEW, 'Ajouter une nouvelle page')
+            ->setPageTitle(Crud::PAGE_EDIT, 'Modification de la page <small>(#%entity_short_id%)</small>');
     }
 
     public function configureFilters(Filters $filters): Filters
@@ -46,11 +50,8 @@ final class PostCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            ->update(Crud::PAGE_INDEX, Action::NEW, fn (Action $action) => $action->setLabel('Ajouter un article')->setIcon('fa fa-plus'))
+            ->update(Crud::PAGE_INDEX, Action::NEW, fn (Action $action) => $action->setLabel('Ajouter une page')->setIcon('fa fa-plus'))
             ->disable(Action::DETAIL);
-            // ->setPermission(Action::DETAIL, 'ROLE_UNAVAILABLE');
-            // ->add(Crud::PAGE_INDEX, Action::DETAIL)
-            // ->update(Crud::PAGE_INDEX, Action::DETAIL, fn (Action $action) => $action->setIcon('fa fa-eye'));
     }
 
     public function configureFields(string $pageName): iterable
@@ -58,13 +59,16 @@ final class PostCrudController extends AbstractCrudController
         yield FormField::addColumn(9)->addCssClass('border-end border-light-subtle');
         yield TranslationsField::new('translations')
             ->addTranslatableField(
-                TextField::new('title', 'Titre')->setRequired(true)->setColumns(12)
+                TextField::new('name', 'Nom de la page')->setRequired(true)->setColumns(12)
+            )
+            ->addTranslatableField(
+                TextField::new('title', 'Titre de la page')->setRequired(true)->setColumns(12)
             )
             ->addTranslatableField(
                 SlugField::new('slug')
                     ->setTargetFieldName('title')
                     ->setRequired(true)
-                    ->setHelp('URL de l\'article, doit être unique')
+                    ->setHelp('URL de la page, doit être unique')
                     ->setColumns(12)
             )
             ->addTranslatableField(
@@ -73,11 +77,17 @@ final class PostCrudController extends AbstractCrudController
 
         yield FormField::addColumn(3);
         yield IdField::new('id')->hideOnForm();
-        yield TextField::new('title', 'Titre')->hideOnForm();
-        yield DateTimeField::new('publishedAt', 'Date de publication')->setFormTypeOptions([
-            'attr' => ['class' => 'w-100'],
-        ]);
+        yield TextField::new('name', 'Nom de la page')->hideOnForm();
+        yield ChoiceField::new('type', 'Type de page')
+            ->setFormTypeOption('choice_label', fn (PageType $value) => $value->label())
+            ->formatValue(fn (PageType $value) => $value->label());
+        yield BooleanField::new('enabled', 'Activé ?')->setFormTypeOption('label_attr.class', 'checkbox-switch');
+        yield AssociationField::new('parent', 'Page parent')
+            ->autocomplete()
+            ->setQueryBuilder(function (QueryBuilder $queryBuilder) {
+                $queryBuilder->andWhere('entity.enabled = 1');
+            })
+            ->hideOnIndex();
         yield DateTimeField::new('createdAt', 'Date de création')->hideOnForm();
-        // yield CollectionField::new('translations', null)->onlyOnDetail();
     }
 }

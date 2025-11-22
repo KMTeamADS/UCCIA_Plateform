@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace ADS\UCCIA\Entity;
 
 use ADS\UCCIA\Entity\Traits\WithUuid;
-use ADS\UCCIA\Repository\PostTranslationRepository;
+use ADS\UCCIA\Repository\PageTranslationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
@@ -14,14 +14,19 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Table(name: 'app_post_translations')]
-#[ORM\Entity(repositoryClass: PostTranslationRepository::class)]
+#[ORM\Table(name: 'app_page_translations')]
+#[ORM\Entity(repositoryClass: PageTranslationRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_LOCALE_SLUG', columns: ['locale', 'slug'])]
 #[UniqueEntity(['locale', 'slug'], errorPath: 'slug')]
-class PostTranslation implements TranslationInterface
+class PageTranslation implements TranslationInterface
 {
     use WithUuid;
     use TranslationTrait;
+
+    #[Assert\NotBlank]
+    #[Assert\Length(['min' => 3, 'max' => 255])]
+    #[ORM\Column(length: 255)]
+    private string $name;
 
     #[Assert\NotBlank]
     #[Assert\Length(['min' => 3, 'max' => 255])]
@@ -40,6 +45,18 @@ class PostTranslation implements TranslationInterface
     public function __construct()
     {
         $this->id = Uuid::v7();
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     public function getTitle(): string

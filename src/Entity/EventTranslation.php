@@ -30,6 +30,7 @@ class EventTranslation implements TranslationInterface
 
     #[Assert\NotBlank]
     #[Assert\Length(['min' => 3, 'max' => 255])]
+    #[Assert\Regex(pattern: '/^[a-z0-9\-]+$/', htmlPattern: '[a-z0-9\-]+')]
     #[ORM\Column(length: 255)]
     private string $slug;
 

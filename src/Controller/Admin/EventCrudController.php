@@ -32,7 +32,8 @@ final class EventCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('Événement')
             ->setEntityLabelInPlural('Événements')
             ->setDefaultSort(['createdAt' => 'DESC'])
-            ->setPageTitle(Crud::PAGE_NEW, 'Ajouter un nouvel Événement');
+            ->setPageTitle(Crud::PAGE_NEW, 'Ajouter un nouvel Événement')
+            ->setPageTitle(Crud::PAGE_EDIT, 'Modification de l\'événement <small>(#%entity_short_id%)</small>');
     }
 
     public function configureFilters(Filters $filters): Filters
