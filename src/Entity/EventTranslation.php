@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ADS\UCCIA\Entity;
 
 use ADS\UCCIA\Entity\Traits\WithUuid;
-use ADS\UCCIA\Repository\PostTranslationRepository;
+use ADS\UCCIA\Repository\EventTranslationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
@@ -14,11 +14,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Table(name: 'app_post_translations')]
-#[ORM\Entity(repositoryClass: PostTranslationRepository::class)]
+#[ORM\Table(name: 'app_event_translations')]
+#[ORM\Entity(repositoryClass: EventTranslationRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_LOCALE_SLUG', columns: ['locale', 'slug'])]
 #[UniqueEntity(['locale', 'slug'], errorPath: 'slug')]
-class PostTranslation implements TranslationInterface
+class EventTranslation implements TranslationInterface
 {
     use WithUuid;
     use TranslationTrait;
@@ -34,7 +34,7 @@ class PostTranslation implements TranslationInterface
     private string $slug;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $content = null;
+    private ?string $description = null;
 
     public function __construct()
     {
@@ -65,14 +65,14 @@ class PostTranslation implements TranslationInterface
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getDescription(): ?string
     {
-        return $this->content;
+        return $this->description;
     }
 
-    public function setContent(?string $content): static
+    public function setDescription(?string $description): static
     {
-        $this->content = $content;
+        $this->description = $description;
 
         return $this;
     }
