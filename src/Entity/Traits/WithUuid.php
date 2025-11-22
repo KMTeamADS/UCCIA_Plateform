@@ -12,9 +12,10 @@ trait WithUuid
     #[ORM\Id]
     // #[ORM\GeneratedValue]
     #[ORM\Column(type: 'uuid', unique: true)]
-    private Uuid $id {
-        get {
-            return $this->id;
-        }
+    private Uuid $id;
+
+    public function getId(): Uuid
+    {
+        return $this->id;
     }
 }

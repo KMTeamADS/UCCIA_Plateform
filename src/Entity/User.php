@@ -24,6 +24,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[Assert\NotBlank]
     #[Assert\Email]
+    #[Assert\Length(['max' => 100])]
     #[ORM\Column(length: 180)]
     private string $email;
 
@@ -37,6 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[Assert\NotBlank]
+    #[Assert\Length(['min' => 8, 'max' => 4096])]
     #[ORM\Column]
     private string $password;
 
