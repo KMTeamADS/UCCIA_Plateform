@@ -51,6 +51,8 @@ final class DashboardController extends AbstractDashboardController
             ->setPaginatorRangeSize(4)
             // ->setPaginatorUseOutputWalkers(true)
             // ->setPaginatorFetchJoinCollection(true)
+            // ->overrideTemplate('crud/edit', 'admin/crud/edit.html.twig')
+            // ->overrideTemplate('crud/new', 'admin/crud/new.html.twig')
             ->setDateTimeFormat(DateTimeField::FORMAT_MEDIUM, DateTimeField::FORMAT_SHORT);
     }
 
