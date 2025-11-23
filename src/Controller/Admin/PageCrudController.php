@@ -24,7 +24,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class PageCrudController extends AbstractCrudController
+final class PageCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
