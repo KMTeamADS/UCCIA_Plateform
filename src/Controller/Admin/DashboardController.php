@@ -70,7 +70,7 @@ final class DashboardController extends AbstractDashboardController
 
         yield EasyAdminMenuItem::section('Navigation');
         yield EasyAdminMenuItem::linkToCrud('Menus', 'fa fa-list', Menu::class);
-        yield EasyAdminMenuItem::linkToCrud('Éléments du menu', 'fa fa-link', MenuItem::class);
+        // yield EasyAdminMenuItem::linkToCrud('Éléments du menu', 'fa fa-link', MenuItem::class);
     }
 
     public function configureUserMenu(UserInterface $user): UserMenu
