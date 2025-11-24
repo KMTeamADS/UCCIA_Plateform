@@ -6,6 +6,8 @@ namespace ADS\UCCIA\Controller\Admin;
 
 use ADS\UCCIA\Entity\Event;
 use ADS\UCCIA\Entity\FrequentlyAskedQuestion;
+use ADS\UCCIA\Entity\Menu;
+use ADS\UCCIA\Entity\MenuItem;
 use ADS\UCCIA\Entity\Page;
 use ADS\UCCIA\Entity\Post;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
@@ -13,7 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
-use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem as EasyAdminMenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -58,20 +60,24 @@ final class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
+        yield EasyAdminMenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
 
-        yield MenuItem::section('Gestion de contenu');
-        yield MenuItem::linkToCrud('Pages', 'fa fa-file-text', Page::class);
-        yield MenuItem::linkToCrud('Articles', 'fas fa-newspaper', Post::class);
-        yield MenuItem::linkToCrud('Événements', 'fa fa-calendar', Event::class);
-        yield MenuItem::linkToCrud('FAQ', 'fa fa-question', FrequentlyAskedQuestion::class);
+        yield EasyAdminMenuItem::section('Gestion de contenu');
+        yield EasyAdminMenuItem::linkToCrud('Pages', 'fa fa-file-text', Page::class);
+        yield EasyAdminMenuItem::linkToCrud('Articles', 'fas fa-newspaper', Post::class);
+        yield EasyAdminMenuItem::linkToCrud('Événements', 'fa fa-calendar', Event::class);
+        yield EasyAdminMenuItem::linkToCrud('FAQ', 'fa fa-question', FrequentlyAskedQuestion::class);
+
+        yield EasyAdminMenuItem::section('Navigation');
+        yield EasyAdminMenuItem::linkToCrud('Menus', 'fa fa-list', Menu::class);
+        // yield EasyAdminMenuItem::linkToCrud('Éléments du menu', 'fa fa-link', MenuItem::class);
     }
 
     public function configureUserMenu(UserInterface $user): UserMenu
     {
         return parent::configureUserMenu($user)
             ->addMenuItems([
-                MenuItem::linkToUrl('Voir le site', 'fa fa-globe', '#')->setLinkTarget('_blank'), // $this->generateUrl('app_dashboard')
+                EasyAdminMenuItem::linkToUrl('Voir le site', 'fa fa-globe', '#')->setLinkTarget('_blank'), // $this->generateUrl('app_dashboard')
                 // MenuItem::section(),
                 // MenuItem::linkToLogout('Logout', 'fa fa-sign-out'),
             ]);

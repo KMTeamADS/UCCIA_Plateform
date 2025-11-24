@@ -1,0 +1,16 @@
+{% extends '@EasyAdmin/crud/index.html.twig' %}
+
+{% block content_title %}
+    {{ parent() }}
+
+    {% if crudMenu is defined and crudMenu is not null %}
+        {% set crudMenuUrl = ea_url()
+            .setController('ADS\\UCCIA\\Controller\\Admin\\MenuCrudController')
+            .setAction('edit')
+            .setEntityId(crudMenu.id)
+            .unset('crudMenuId')
+        %}
+
+        &laquo;<a href="{{ crudMenuUrl }}">{{ crudMenu.name }}</a>&raquo;
+    {% endif %}
+{% endblock %}
