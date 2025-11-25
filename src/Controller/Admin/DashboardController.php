@@ -77,7 +77,7 @@ final class DashboardController extends AbstractDashboardController
     {
         return parent::configureUserMenu($user)
             ->addMenuItems([
-                EasyAdminMenuItem::linkToUrl('Voir le site', 'fa fa-globe', '#')->setLinkTarget('_blank'), // $this->generateUrl('app_dashboard')
+                EasyAdminMenuItem::linkToUrl('Voir le site', 'fa fa-globe', $this->generateUrl('app_home'))->setLinkTarget('_blank'),
                 // MenuItem::section(),
                 // MenuItem::linkToLogout('Logout', 'fa fa-sign-out'),
             ]);

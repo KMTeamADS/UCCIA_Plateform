@@ -1,3 +1,5 @@
-body {
-    background-color: skyblue;
-}
+@import url('../vendor/bootstrap/dist/css/bootstrap.min.css');
+
+/*body {*/
+/*    background-color: skyblue;*/
+/*}*/
