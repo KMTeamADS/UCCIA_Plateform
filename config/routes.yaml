@@ -1,5 +1,26 @@
+# yaml-language-server: $schema=../vendor/symfony/routing/Loader/schema/routing.schema.json
+
+#controllers:
+#    resource: routing.controllers
+#    prefix: /{_locale}
+#    defaults:
+#        _locale: '%app.locale%'
+
+root_redirect:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: 'app_home'
+        permanent: true   # Redirection 301 (Bon pour le SEO)
+        _locale: 'fr'     # Force la locale par défaut
+
 controllers:
     resource:
         path: ../src/Controller/
         namespace: ADS\UCCIA\Controller
     type: attribute
+    prefix: /{_locale}
+    defaults:
+        _locale: '%app.locale%'
+    schemes:
+        - HTTPS

@@ -2,6 +2,10 @@
 framework:
     secret: '%env(APP_SECRET)%'
 
+    # this defines the codes of the locales (languages) available in the application
+    # https://symfony.com/doc/current/reference/configuration/framework.html#enabled-locales
+    enabled_locales: [ 'fr', 'en', 'ar' ]
+
     # Note that the session will be started ONLY if you read or write from it.
     session: true
 

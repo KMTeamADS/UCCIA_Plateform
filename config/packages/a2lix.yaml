@@ -1,6 +1,6 @@
 a2lix_translation_form:
     locale_provider: default
-    locales: [fr, en]
-    default_locale: fr
-    required_locales: [fr, en]
+    locales: '%kernel.enabled_locales%'
+    default_locale: '%app.locale%'
+    required_locales: '%kernel.enabled_locales%'
     templating: '@A2lixTranslationForm/bootstrap_5_layout.html.twig'
