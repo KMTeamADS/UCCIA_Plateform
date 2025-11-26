@@ -14,13 +14,26 @@ root_redirect:
         permanent: true   # Redirection 301 (Bon pour le SEO)
         _locale: 'fr'     # Force la locale par défaut
 
-controllers:
+controllers_public:
     resource:
         path: ../src/Controller/
         namespace: ADS\UCCIA\Controller
+    # exclude: ../src/Controller/Admin/
     type: attribute
     prefix: /{_locale}
+    requirements:
+        _locale: 'fr|en|ar'
     defaults:
         _locale: '%app.locale%'
+    schemes:
+        - HTTPS
+
+controllers_admin:
+    resource:
+        path: ../src/Controller/Admin/
+        namespace: ADS\UCCIA\Controller\Admin # Attention au namespace qui change !
+    type: attribute
+    # Pas de prefix ou un prefix fixe comme /admin
+    # prefix: /admin
     schemes:
         - HTTPS

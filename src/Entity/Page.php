@@ -6,6 +6,7 @@ namespace ADS\UCCIA\Entity;
 
 use ADS\UCCIA\Entity\Enums\PageType;
 use ADS\UCCIA\Entity\Traits\WithEnable;
+use ADS\UCCIA\Entity\Traits\WithPageTranslation;
 use ADS\UCCIA\Entity\Traits\WithTimestamps;
 use ADS\UCCIA\Entity\Traits\WithUuid;
 use ADS\UCCIA\Repository\PageRepository;
@@ -13,7 +14,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -26,6 +26,7 @@ class Page implements TranslatableInterface
     use TranslatableTrait;
     use WithTimestamps;
     use WithEnable;
+    use WithPageTranslation;
 
     #[Assert\NotBlank]
     #[ORM\Column(length: 50, enumType: PageType::class, options: ['default' => PageType::STANDARD])]
@@ -50,18 +51,7 @@ class Page implements TranslatableInterface
 
     public function __toString(): string
     {
-        return $this->translate()->getName();
-    }
-
-    /** @return PageTranslation */
-    public function translate(?string $locale = null, bool $fallbackToDefault = true): TranslationInterface
-    {
-        return $this->doTranslate($locale, $fallbackToDefault);
-    }
-
-    public function getName(): string
-    {
-        return $this->translate()->getName();
+        return $this->getName();
     }
 
     public function getType(): PageType
@@ -86,10 +76,10 @@ class Page implements TranslatableInterface
         $url = '';
 
         foreach ($this->getParents() as $parent) {
-            $url .= $parent->translate()->getSlug() . '/';
+            $url .= $parent->getSlug() . '/';
         }
 
-        return $url . $this->translate()->getSlug();
+        return $url . $this->getSlug();
     }
 
     /** @return self[] */

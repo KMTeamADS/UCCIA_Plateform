@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ADS\UCCIA\Controller;
+namespace ADS\UCCIA\Controller\Admin;
 
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-final class SecurityController extends AbstractController
+final class AdminSecurityController extends AbstractController
 {
     public function __construct(private readonly AdminUrlGenerator $adminUrlGenerator)
     {
@@ -42,5 +42,11 @@ final class SecurityController extends AbstractController
             'remember_me_enabled' => true,
             'remember_me_label' => 'Se souvenir de moi',
         ]);
+    }
+
+    #[Route(path: '/%app.security.admin_prefix%/logout', name: 'admin_logout')]
+    public function logout(): void
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }
