@@ -65,8 +65,9 @@ class PageRepository extends ServiceEntityRepository
     protected function createTranslationBasedQueryBuilder(string $locale): QueryBuilder
     {
         return $this->createQueryBuilder('page')
-            ->addSelect('translation')
-            ->leftJoin('page.translations', 'translation')
+            ->addSelect('translations')
+            ->leftJoin('page.translations', 'translations')
+            ->innerJoin('page.translations', 'translation')
             ->andWhere('translation.locale = :locale')
             ->setParameter('locale', $locale);
     }

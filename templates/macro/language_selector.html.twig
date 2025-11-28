@@ -1,7 +1,7 @@
 {% macro render_language_selector(display_current_language = true) %}
     <li class="nav-item dropdown">
         <button type="button" class="nav-link dropdown-toggle" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {% if display_current_language %}
+            {% if display_current_language is defined and display_current_language %}
                 <span class="current-language">{{ app.locale|locale_name }}</span>
             {% endif %}
             <span class="visually-hidden">{{ 'menu.choose_language'|trans }}</span>
@@ -11,7 +11,14 @@
             {% for locale in locales() %}
                 {%- set is_active = app.locale == locale.code -%}
                 <li class="{{ is_active ? 'active' }}{{ is_rtl(locale.code) ? ' rtl' }}" translate="no">
-                    <a class="stretched-link- dropdown-item" lang="{{ locale.code }}" hreflang="{{ locale.code }}" href="{{ path(app.current_route ?? 'app_home', app.current_route_parameters|merge({_locale: locale.code})) }}" data-turbo="false">
+                    {# {{ path(app.current_route ?? 'app_home', app.current_route_parameters|merge({_locale: locale.code})) }} #}
+                    <a
+                        class="stretched-link- dropdown-item"
+                        lang="{{ locale.code }}"
+                        hreflang="{{ locale.code }}"
+                        href="{{ get_localized_url(locale.code) }}"
+                        data-turbo="false"
+                    >
                         {{ locale.name|capitalize }} <small>{{ locale.code }}</small>
                     </a>
                 </li>

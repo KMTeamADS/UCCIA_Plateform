@@ -71,6 +71,21 @@ class Page implements TranslatableInterface
         return $this->getType() === PageType::KNOT || $this->getChildren()->count() > 0;
     }
 
+    public function getHierarchicalUrl(string $targetLocale): string
+    {
+        $slugs = [];
+        $current = $this;
+
+        while ($current !== null) {
+            $slug = $current->translate($targetLocale)->getSlug();
+
+            array_unshift($slugs, $slug);
+            $current = $current->getParent();
+        }
+
+        return implode('/', $slugs);
+    }
+
     public function getUrl(): string
     {
         $url = '';
