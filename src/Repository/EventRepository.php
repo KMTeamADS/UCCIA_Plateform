@@ -13,8 +13,20 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class EventRepository extends ServiceEntityRepository
 {
+    use WithCreateTranslationBasedQueryBuilder;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Event::class);
+    }
+
+    public function findEvent(string $slug, string $locale = 'fr'): ?Event
+    {
+        return $this->createTranslationBasedQueryBuilder($locale, 'event')
+            ->addSelect('event')
+            ->andWhere('translation.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

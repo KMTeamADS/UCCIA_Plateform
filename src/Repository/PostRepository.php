@@ -13,8 +13,23 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PostRepository extends ServiceEntityRepository
 {
+    use WithCreateTranslationBasedQueryBuilder;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Post::class);
+    }
+
+    public function findPublished(string $slug, string $locale = 'fr'): ?Post
+    {
+        return $this->createTranslationBasedQueryBuilder($locale, 'post')
+            ->addSelect('post')
+            ->andWhere('translation.slug = :slug')
+            ->andWhere('post.publishedAt IS NOT NULL')
+            ->andWhere('post.publishedAt <= :now')
+            ->setParameter('slug', $slug)
+            ->setParameter('now', new \DateTimeImmutable())
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }
