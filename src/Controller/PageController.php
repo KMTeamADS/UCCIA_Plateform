@@ -20,7 +20,7 @@ final class PageController extends AbstractController
     ) {
     }
 
-    #[Route('/{url}', name: 'app_page_show', requirements: ['url' => '[a-z0-9\-_\/]*'], methods: ['GET'])]
+    #[Route('/{url}', name: 'app_page_show', requirements: ['url' => '[a-z0-9\-_\/]*'], methods: ['GET'], priority: -1)]
     public function show(string $url, Request $request): Response
     {
         if (str_ends_with($url, '/')) {
