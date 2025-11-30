@@ -24,6 +24,7 @@ class MenuItemTranslation implements TranslationInterface
     #[ORM\Column(length: 255)]
     private string $name;
 
+    #[Assert\Url]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $url = null;
 
