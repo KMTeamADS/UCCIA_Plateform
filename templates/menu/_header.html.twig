@@ -1,0 +1,42 @@
+{% if menu is not null and menu.items|length > 0 %}
+    {% for item in menu.items %}
+        <li class="nav-item {% if item.isPage and item.page.isKnot %}dropdown super-dd{% endif %}">
+            <a class="nav-link {% if item.isPage and item.page.isKnot %}dropdown-toggle{% endif %}"
+                {% if item.isUrl %}
+                    href="{{ item.url }}" {% if item.newWindow %} target="_blank" {% endif %}
+                {% else %}
+                    href="{{ path('app_page_show', {'url': item.page.url}) }}"
+                {% endif %}
+                {% if item.isPage and item.page.isKnot %}
+                    id="navbarDropdown{{ item.id }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                {% endif %}
+            >
+                {{ item }}
+            </a>
+
+            {% if item.isPage and item.page.isKnot and item.page.children|length > 0 %}
+                <div class="dropdown-menu super-dd-menu" aria-labelledby="navbarDropdown{{ item.id }}">
+                    <div class="super-row">
+                        {% for child in item.page.children %}
+                            <div class="dx-col">
+                                <h4 class="dx-col-title">
+                                    <a href="{{ path('app_page_show', {'url': child.url}) }}">
+                                        {{ child }}
+                                    </a>
+                                </h4>
+
+                                {% if child.children|length > 0 %}
+                                    {% for subChild in child.children %}
+                                        <a href="{{ path('app_page_show', {'url': subChild.url}) }}" class="dx-col-link">
+                                            {{ subChild }}
+                                        </a>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </li>
+    {% endfor %}
+{% endif %}

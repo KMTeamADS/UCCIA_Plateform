@@ -20,7 +20,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-{#                        {{ render(controller('App\\Controller\\MenuController::header')) }}#}
+                        {{ render(controller('ADS\\UCCIA\\Controller\\MenuController', {name: 'header', template: 'menu/_header.html.twig'})) }}
 
                         {% from 'macro/language_selector.html.twig' import render_language_selector %}
                         {{ render_language_selector() }}
