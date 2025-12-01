@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ADS\UCCIA\Entity;
 
+use ADS\UCCIA\Entity\Traits\WithImage;
 use ADS\UCCIA\Entity\Traits\WithTimestamps;
 use ADS\UCCIA\Entity\Traits\WithUuid;
 use ADS\UCCIA\Repository\PostRepository;
@@ -21,6 +22,7 @@ class Post implements TranslatableInterface
     use WithUuid;
     use TranslatableTrait;
     use WithTimestamps;
+    use WithImage;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $publishedAt = null;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8074f5a705b1cf99768b9b113ad9d214",
+    "content-hash": "5e454bed0893fc2a1f3bbd3fd95ef29a",
     "packages": [
         {
             "name": "a2lix/auto-form-bundle",
@@ -1693,6 +1693,174 @@
             "time": "2025-03-06T22:45:56+00:00"
         },
         {
+            "name": "imagine/imagine",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-imagine/Imagine.git",
+                "reference": "80ab21434890dee9ba54969d31c51ac8d4d551e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-imagine/Imagine/zipball/80ab21434890dee9ba54969d31c51ac8d4d551e0",
+                "reference": "80ab21434890dee9ba54969d31c51ac8d4d551e0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5 || ^7.5 || ^8.4 || ^9.3"
+            },
+            "suggest": {
+                "ext-exif": "to read EXIF metadata",
+                "ext-gd": "to use the GD implementation",
+                "ext-gmagick": "to use the Gmagick implementation",
+                "ext-imagick": "to use the Imagick implementation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Imagine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bulat Shakirzyanov",
+                    "email": "mallluhuct@gmail.com",
+                    "homepage": "http://avalanche123.com"
+                }
+            ],
+            "description": "Image processing for PHP",
+            "homepage": "http://imagine.readthedocs.org/",
+            "keywords": [
+                "drawing",
+                "graphics",
+                "image manipulation",
+                "image processing"
+            ],
+            "support": {
+                "issues": "https://github.com/php-imagine/Imagine/issues",
+                "source": "https://github.com/php-imagine/Imagine/tree/1.5.0"
+            },
+            "time": "2024-12-03T14:37:55+00:00"
+        },
+        {
+            "name": "jolicode/media-bundle",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jolicode/MediaBundle.git",
+                "reference": "4f4e0d99d82023fbd4802d2ffa94d9fcef6c72c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jolicode/MediaBundle/zipball/4f4e0d99d82023fbd4802d2ffa94d9fcef6c72c6",
+                "reference": "4f4e0d99d82023fbd4802d2ffa94d9fcef6c72c6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-iconv": "*",
+                "ext-mbstring": "*",
+                "league/flysystem": "^3",
+                "league/flysystem-read-only": "^3",
+                "php": ">=8.2",
+                "symfony/asset": "^7.0 || ^8.0",
+                "symfony/cache": "^7.0 || ^8.0",
+                "symfony/console": "^7.0 || ^8.0",
+                "symfony/dependency-injection": "^7.0 || ^8.0",
+                "symfony/deprecation-contracts": "^3.0",
+                "symfony/event-dispatcher": "^7.0 || ^8.0",
+                "symfony/event-dispatcher-contracts": "^2.0 || ^3.0",
+                "symfony/expression-language": "^7.0 || ^8.0",
+                "symfony/filesystem": "^7.0 || ^8.0",
+                "symfony/form": "^7.0 || ^8.0",
+                "symfony/http-foundation": "^7.0 || ^8.0",
+                "symfony/http-kernel": "^7.0 || ^8.0",
+                "symfony/intl": "^7.0 || ^8.0",
+                "symfony/mime": "^7.0 || ^8.0",
+                "symfony/process": "^7.0 || ^8.0",
+                "symfony/routing": "^7.0 || ^8.0",
+                "symfony/runtime": "^7.0 || ^8.0",
+                "symfony/string": "^7.0 || ^8.0",
+                "symfony/translation": "^7.0 || ^8.0",
+                "symfony/translation-contracts": "^2.3 || ^3.0",
+                "symfony/twig-bridge": "^7.1.9 || ^8.0",
+                "symfony/twig-bundle": "^7.0 || ^8.0",
+                "symfony/ux-twig-component": "^2.21",
+                "symfony/validator": "^7.0 || ^8.0",
+                "twig/twig": "^3.20"
+            },
+            "require-dev": {
+                "doctrine/doctrine-fixtures-bundle": "^4.1",
+                "easycorp/easyadmin-bundle": "^4.26",
+                "ext-imagick": "*",
+                "imagine/imagine": "^1.5",
+                "league/flysystem-bundle": "^3.4",
+                "league/flysystem-memory": "^3.0",
+                "phpunit/phpunit": "^11",
+                "psr/log": "^2.0 || ^3.0",
+                "sonata-project/admin-bundle": "^4.30",
+                "symfony/browser-kit": "^7.0 || ^8.0",
+                "symfony/css-selector": "^7.0 || ^8.0",
+                "symfony/monolog-bundle": "^3.10",
+                "symfony/stopwatch": "^7.0 || ^8.0",
+                "symfony/yaml": "^7.2 || ^8.0"
+            },
+            "suggest": {
+                "ext-imagick": "required to use imagine processor",
+                "imagine/imagine": "required to use imagine processor",
+                "league/flysystem-bundle": "Ease of use with FlySystem"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "JoliCode\\MediaBundle\\": "src/",
+                    "JoliCode\\MediaBundle\\Bridge\\": "src/Bridge/src/",
+                    "JoliCode\\MediaBundle\\Bridge\\EasyAdmin\\": "src/Bridge/EasyAdmin/src/",
+                    "JoliCode\\MediaBundle\\Bridge\\SonataAdmin\\": "src/Bridge/SonataAdmin/src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "JoliCode",
+                    "email": "coucou@jolicode.com"
+                },
+                {
+                    "name": "Project Contributors",
+                    "homepage": "https://github.com/JoliCode/MediaBundle/graphs/contributors"
+                }
+            ],
+            "description": "A media management bundle for Symfony applications, with Easyadmin and SonataAdmin integrations.",
+            "homepage": "https://github.com/JoliCode/MediaBundle",
+            "keywords": [
+                "admin",
+                "bundle",
+                "gallery",
+                "media",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/jolicode/MediaBundle/issues",
+                "source": "https://github.com/jolicode/MediaBundle/tree/v0.2.0"
+            },
+            "time": "2025-12-01T13:05:39+00:00"
+        },
+        {
             "name": "knplabs/doctrine-behaviors",
             "version": "v3.0.0",
             "source": {
@@ -1787,6 +1955,241 @@
                 "source": "https://github.com/KnpLabs/DoctrineBehaviors/tree/v3.0.0"
             },
             "time": "2025-10-12T11:54:42+00:00"
+        },
+        {
+            "name": "league/flysystem",
+            "version": "3.30.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "5966a8ba23e62bdb518dd9e0e665c2dbd4b5b277"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/5966a8ba23e62bdb518dd9e0e665c2dbd4b5b277",
+                "reference": "5966a8ba23e62bdb518dd9e0e665c2dbd4b5b277",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem-local": "^3.0.0",
+                "league/mime-type-detection": "^1.0.0",
+                "php": "^8.0.2"
+            },
+            "conflict": {
+                "async-aws/core": "<1.19.0",
+                "async-aws/s3": "<1.14.0",
+                "aws/aws-sdk-php": "3.209.31 || 3.210.0",
+                "guzzlehttp/guzzle": "<7.0",
+                "guzzlehttp/ringphp": "<1.1.1",
+                "phpseclib/phpseclib": "3.0.15",
+                "symfony/http-client": "<5.2"
+            },
+            "require-dev": {
+                "async-aws/s3": "^1.5 || ^2.0",
+                "async-aws/simple-s3": "^1.1 || ^2.0",
+                "aws/aws-sdk-php": "^3.295.10",
+                "composer/semver": "^3.0",
+                "ext-fileinfo": "*",
+                "ext-ftp": "*",
+                "ext-mongodb": "^1.3|^2",
+                "ext-zip": "*",
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "google/cloud-storage": "^1.23",
+                "guzzlehttp/psr7": "^2.6",
+                "microsoft/azure-storage-blob": "^1.1",
+                "mongodb/mongodb": "^1.2|^2",
+                "phpseclib/phpseclib": "^3.0.36",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.5.11|^10.0",
+                "sabre/dav": "^4.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "File storage abstraction for PHP",
+            "keywords": [
+                "WebDAV",
+                "aws",
+                "cloud",
+                "file",
+                "files",
+                "filesystem",
+                "filesystems",
+                "ftp",
+                "s3",
+                "sftp",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/flysystem/issues",
+                "source": "https://github.com/thephpleague/flysystem/tree/3.30.2"
+            },
+            "time": "2025-11-10T17:13:11+00:00"
+        },
+        {
+            "name": "league/flysystem-local",
+            "version": "3.30.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem-local.git",
+                "reference": "ab4f9d0d672f601b102936aa728801dd1a11968d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/ab4f9d0d672f601b102936aa728801dd1a11968d",
+                "reference": "ab4f9d0d672f601b102936aa728801dd1a11968d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "league/flysystem": "^3.0.0",
+                "league/mime-type-detection": "^1.0.0",
+                "php": "^8.0.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\Local\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "Local filesystem adapter for Flysystem.",
+            "keywords": [
+                "Flysystem",
+                "file",
+                "files",
+                "filesystem",
+                "local"
+            ],
+            "support": {
+                "source": "https://github.com/thephpleague/flysystem-local/tree/3.30.2"
+            },
+            "time": "2025-11-10T11:23:37+00:00"
+        },
+        {
+            "name": "league/flysystem-read-only",
+            "version": "3.28.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem-read-only.git",
+                "reference": "94f3f6d80c12ade1274996e665f4b963f53d6a11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-read-only/zipball/94f3f6d80c12ade1274996e665f4b963f53d6a11",
+                "reference": "94f3f6d80c12ade1274996e665f4b963f53d6a11",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "^3.10.0",
+                "php": "^8.0.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\ReadOnly\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "Read-only filesystem adapter for Flysystem.",
+            "keywords": [
+                "Flysystem",
+                "Read-Only",
+                "filesystem",
+                "only",
+                "read"
+            ],
+            "support": {
+                "source": "https://github.com/thephpleague/flysystem-read-only/tree/3.28.0"
+            },
+            "time": "2024-05-06T20:05:52+00:00"
+        },
+        {
+            "name": "league/mime-type-detection",
+            "version": "1.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/mime-type-detection.git",
+                "reference": "2d6702ff215bf922936ccc1ad31007edc76451b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/2d6702ff215bf922936ccc1ad31007edc76451b9",
+                "reference": "2d6702ff215bf922936ccc1ad31007edc76451b9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.2",
+                "phpstan/phpstan": "^0.12.68",
+                "phpunit/phpunit": "^8.5.8 || ^9.3 || ^10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\MimeTypeDetection\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "Mime-type detection for Flysystem",
+            "support": {
+                "issues": "https://github.com/thephpleague/mime-type-detection/issues",
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.16.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/frankdejonge",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-09-21T08:32:55+00:00"
         },
         {
             "name": "monolog/monolog",

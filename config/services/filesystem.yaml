@@ -1,0 +1,20 @@
+services:
+    filesystem.original.adapter:
+        class: League\Flysystem\Local\LocalFilesystemAdapter
+        arguments:
+            $location: '%kernel.project_dir%/public/media/original'
+
+    filesystem.original.storage:
+        class: League\Flysystem\Filesystem
+        arguments:
+            $adapter: '@filesystem.original.adapter'
+
+    filesystem.cache.adapter:
+        class: League\Flysystem\Local\LocalFilesystemAdapter
+        arguments:
+            $location: '%kernel.project_dir%/public/media/cache'
+
+    filesystem.cache.storage:
+        class: League\Flysystem\Filesystem
+        arguments:
+            $adapter: '@filesystem.cache.adapter'
