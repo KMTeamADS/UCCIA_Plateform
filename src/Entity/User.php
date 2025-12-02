@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ADS\UCCIA\Entity;
 
+use ADS\UCCIA\Entity\Enums\OriginType;
 use ADS\UCCIA\Entity\Traits\WithUuid;
 use ADS\UCCIA\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
@@ -41,6 +42,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Length(['min' => 8, 'max' => 4096])]
     #[ORM\Column]
     private string $password;
+
+    #[Assert\NotBlank]
+    #[ORM\Column(length: 50, enumType: OriginType::class, options: ['default' => OriginType::CCIA_NGAZIDJA])]
+    private OriginType $origin = OriginType::CCIA_NGAZIDJA;
 
     public function __construct()
     {
@@ -102,6 +107,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getOrigin(): OriginType
+    {
+        return $this->origin;
+    }
+
+    public function setOrigin(OriginType $origin): static
+    {
+        $this->origin = $origin;
 
         return $this;
     }
