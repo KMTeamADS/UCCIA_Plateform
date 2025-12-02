@@ -40,7 +40,8 @@ final class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('UCCIA Plateform')
+            // ->setTitle('UCCIA Plateform')
+            ->setTitle('<img src="/logo.png" alt="UCCIA Plateform" />')
             ->generateRelativeUrls();
     }
 

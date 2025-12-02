@@ -32,7 +32,7 @@ final class AdminSecurityController extends AbstractController
         return $this->render('@EasyAdmin/page/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            // 'page_title' => '<img src="/logo.svg" alt="UCCIA Plateform" />',
+            'page_title' => '<img src="/logo.png" alt="UCCIA Plateform" />',
             // 'page_title' => 'UCCIA Plateform',
             'csrf_token_intention' => 'authenticate',
             'target_path' => $this->adminUrlGenerator->generateUrl(),
