@@ -78,6 +78,7 @@ final class DashboardController extends AbstractDashboardController
     public function configureUserMenu(UserInterface $user): UserMenu
     {
         return parent::configureUserMenu($user)
+            // ->setGravatarEmail($user->getUserIdentifier())
             ->addMenuItems([
                 EasyAdminMenuItem::linkToUrl('Voir le site', 'fa fa-globe', $this->generateUrl('app_home'))->setLinkTarget('_blank'),
                 // MenuItem::section(),
